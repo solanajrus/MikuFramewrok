@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-feature-settings: "cv01", "cv02", "cv03", "cv04";
+  }
+}
+
+/* Matrix-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4a4a4a; /* Changed from #ffffff to dark grey */
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #666666; /* Changed from #ff0000 to lighter grey on hover */
+}
+
+/* Glitch animation */
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.glitch {
+  animation: glitch 0.3s infinite;
+}
+
+/* Matrix rain effect */
+@keyframes matrix-rain {
+  0% { transform: translateY(-100vh); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.matrix-rain {
+  animation: matrix-rain 3s linear infinite;
+}
+
+/* Typing cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.typing-cursor {
+  animation: blink 1s infinite;
+}
+
+/* Pulsing red glow */
+@keyframes red-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    border-color: rgba(255, 0, 0, 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+    border-color: rgba(255, 0, 0, 0.8);
+  }
+}
+
+.red-pulse {
+  animation: red-pulse 2s infinite;
+}
+
+/* White terminal glow */
+@keyframes white-glow {
+  0%, 100% { 
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  50% { 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+}
+
+.white-glow {
+  animation: white-glow 2s infinite;
+}
+
+/* Scan lines effect */
+.scan-lines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    transparent 50%,
+    rgba(255, 255, 255, 0.03) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  animation: scan 0.1s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+/* Custom focus styles */
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .terminal-mobile {
+    font-size: 14px;
+  }
+}
