@@ -142,7 +142,7 @@ function App() {
 
     const welcomeMessages = [
       `Hey there~ I'm ${aiName}! ♡`,
-      "Welcome to my space station terminal~",
+      "Welcome to my terminal~",
       "",
       "I'm so happy you're here with me!",
       "I love chatting and getting to know people like you.",
@@ -456,7 +456,7 @@ function App() {
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               </div>
               <span className="text-sm text-gray-300">
-                DEEP_SPACE_STATION://TERMINAL_3.7.2
+                MIKU_TERMINAL://v3.7.2
               </span>
             </div>
           </div>

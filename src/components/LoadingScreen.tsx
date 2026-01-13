@@ -10,7 +10,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [isComplete, setIsComplete] = useState(false);
 
   const bootMessages = [
-    'Deep Space Station - Terminal',
+    'Miku Terminal v3.7.2',
     'Waking up Miku AI...',
     'Loading personality modules...',
     'Ready to chat! ♡'
@@ -65,7 +65,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
             <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
           </div>
-          <span className="text-cyan-400 text-sm">space_station://miku_startup</span>
+          <span className="text-cyan-400 text-sm">miku_terminal://startup</span>
           <span className="text-cyan-400 text-xs ml-auto">starting up...</span>
         </div>
       </div>
@@ -99,7 +99,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 ✓ Miku is online! ♡
               </div>
               <div className="flex items-center">
-                <span className="text-cyan-400">miku@station:~$ </span>
+                <span className="text-cyan-400">miku@terminal:~$ </span>
                 <span className="inline-block w-2 h-5 bg-cyan-400 ml-1 animate-pulse"></span>
               </div>
               <div className="text-cyan-400 text-sm animate-pulse">

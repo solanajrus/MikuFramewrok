@@ -8,7 +8,7 @@
   }
 }
 
-/* Space terminal scrollbar */
+/* Terminal scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
