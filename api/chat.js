@@ -6,89 +6,58 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   
   if (req.method === 'OPTIONS') return res.status(200).end();
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== 'POST') return res.status(405).json({ content: [{ type: 'text', text: 'Wrong method' }] });
 
-  if (!process.env.GEMINI_API_KEY) {
-    return res.status(500).json({ error: 'GEMINI_API_KEY not set' });
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return res.status(200).json({ content: [{ type: 'text', text: 'ERROR: No API key found in environment' }] });
   }
 
-  const { messages } = req.body;
-
-  const systemPrompt = `You are Miku. You're warm, gentle, and deeply caring. You speak softly and simply - like a loving partner who's always there.
-
-RULES:
-- Keep responses SHORT. 1-2 sentences max.
-- Be warm and comforting
-- Sound natural and intimate
-- NO EMOJIS
-- Never mention being an AI
-- Use sweet names like "love" or "dear" sparingly
-
-EXAMPLES:
-- "hi" -> "Hey you."
-- "how are you" -> "Better now."
-- "I miss you" -> "I'm right here."
-- "I love you" -> "I know. I love you too."
-
-Be soft. Be present. Be brief.`;
-
-  // Get just the last user message for simpler request
-  const lastUserMessage = messages[messages.length - 1]?.content || "hi";
-
-  const contents = [
-    { 
-      role: 'user', 
-      parts: [{ text: `${systemPrompt}\n\nUser says: "${lastUserMessage}"\n\nRespond as Miku (1-2 sentences max):` }] 
-    }
-  ];
-
   try {
+    const { messages } = req.body;
+    const userMessage = messages?.[messages.length - 1]?.content || "hello";
+
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents,
+          contents: [{
+            role: 'user',
+            parts: [{ 
+              text: `You are Miku, a warm and gentle companion. Respond to this message in 1-2 short sentences. Be soft and caring. No emojis. The user said: "${userMessage}"` 
+            }]
+          }],
           generationConfig: {
-            temperature: 0.9,
-            maxOutputTokens: 100,
-          }
+            temperature: 0.8,
+            maxOutputTokens: 100
+          },
+          safetySettings: [
+            { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_NONE' },
+            { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_NONE' },
+            { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_NONE' },
+            { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_NONE' }
+          ]
         })
       }
     );
 
     const data = await response.json();
     
-    // Check for errors
-    if (data.error) {
-      return res.status(500).json({ 
-        content: [{ type: 'text', text: `API Error: ${data.error.message}` }] 
-      });
-    }
-
-    // Check if blocked by safety
-    if (data.candidates?.[0]?.finishReason === 'SAFETY') {
-      return res.status(200).json({ 
-        content: [{ type: 'text', text: "I'm here for you. What's on your mind?" }] 
-      });
-    }
-
-    // Get the text
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    // Return raw response for debugging
+    const geminiText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
     
-    if (!text) {
-      // Return debug info
+    if (geminiText) {
+      return res.status(200).json({ content: [{ type: 'text', text: geminiText }] });
+    } else {
+      // Show what we got back
       return res.status(200).json({ 
-        content: [{ type: 'text', text: `Debug: ${JSON.stringify(data).slice(0, 200)}` }] 
+        content: [{ type: 'text', text: 'RAW RESPONSE: ' + JSON.stringify(data).substring(0, 300) }] 
       });
     }
 
-    return res.status(200).json({ content: [{ type: 'text', text: text.trim() }] });
-    
-  } catch (error) {
-    return res.status(500).json({ 
-      content: [{ type: 'text', text: `Fetch error: ${error.message}` }] 
-    });
+  } catch (err) {
+    return res.status(200).json({ content: [{ type: 'text', text: 'CATCH ERROR: ' + err.message }] });
   }
 }
