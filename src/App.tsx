@@ -568,7 +568,6 @@ function App() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="flex-1 bg-transparent text-white outline-none font-mono caret-white border-b border-white/30 focus:border-white transition-colors"
-                placeholder={`Chat with ${aiName}-chan... ♡`}
                 placeholder={`Chat with ${aiName}-chan...`}
                 autoFocus
                 disabled={isTyping || !showMessages || isSystemTyping}
