@@ -10,7 +10,7 @@ const BlankPage: React.FC<BlankPageProps> = ({ onComplete }) => {
   const [isTyping, setIsTyping] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const targetText = "initializing miku ai systems";
+  const targetText = "miku is getting ready for you...";
 
   useEffect(() => {
     // Start typing after a brief delay

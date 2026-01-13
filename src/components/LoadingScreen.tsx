@@ -10,10 +10,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [isComplete, setIsComplete] = useState(false);
 
   const bootMessages = [
-    'DEEP SPACE STATION - TERMINAL v3.7.2',
-    'Initializing AI systems...',
-    'Loading Miku AI core modules...',
-    'Systems ready.'
+    'Deep Space Station - Terminal',
+    'Waking up Miku AI...',
+    'Loading personality modules...',
+    'Ready to chat! ♡'
   ];
 
   useEffect(() => {
@@ -65,8 +65,8 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
             <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
             <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
           </div>
-          <span className="text-cyan-400 text-sm">DEEP_SPACE://boot_sequence.sys</span>
-          <span className="text-cyan-400 text-xs ml-auto">STATUS: INITIALIZING</span>
+          <span className="text-cyan-400 text-sm">space_station://miku_startup</span>
+          <span className="text-cyan-400 text-xs ml-auto">starting up...</span>
         </div>
       </div>
 
@@ -96,14 +96,14 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
           {isComplete && (
             <div className="mt-6 space-y-2 border-t border-cyan-500/30 pt-4">
               <div className="text-cyan-400 text-lg font-bold animate-pulse">
-                ✓ MIKU AI ONLINE
+                ✓ Miku is online! ♡
               </div>
               <div className="flex items-center">
-                <span className="text-cyan-400">station@miku:~$ </span>
+                <span className="text-cyan-400">miku@station:~$ </span>
                 <span className="inline-block w-2 h-5 bg-cyan-400 ml-1 animate-pulse"></span>
               </div>
               <div className="text-cyan-400 text-sm animate-pulse">
-                Establishing terminal connection...
+                Opening chat terminal...
               </div>
             </div>
           )}
@@ -113,12 +113,12 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       {/* Bottom status bar */}
       <div className="border-t border-cyan-500/30 p-2 bg-black text-xs">
         <div className="flex justify-between items-center">
-          <span className="text-cyan-400">SYSTEM INITIALIZATION</span>
+          <span className="text-cyan-400">Starting Miku AI...</span>
           <span className="text-cyan-400">
             {messages.length}/{bootMessages.length} |
-            {isComplete ? 'COMPLETE' : 'RUNNING'}
+            {isComplete ? 'ready! ♡' : 'loading...'}
           </span>
-          <span className="text-cyan-400 animate-pulse">● BOOT</span>
+          <span className="text-cyan-400 animate-pulse">● {isComplete ? 'online' : 'starting'}</span>
         </div>
       </div>
     </div>

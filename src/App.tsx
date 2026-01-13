@@ -141,19 +141,19 @@ function App() {
     else timeContext = 'Evening facade calibration in progress...';
 
     const welcomeMessages = [
-      `SPACE TERMINAL v3.7.2 - AI INTERFACE: ${aiName}`,
-      "STATUS: ONLINE | SYSTEMS: NOMINAL",
+      `Hey there~ I'm ${aiName}! ♡`,
+      "Welcome to my space station terminal~",
       "",
-      "Deep space communications link established.",
-      "All ship systems operating within normal parameters.",
-      "Navigation, life support, and propulsion: GREEN",
+      "I'm so happy you're here with me!",
+      "I love chatting and getting to know people like you.",
+      "Ask me anything - I promise I'll do my best to help ♡",
       "",
-      `I am ${aiName}, your onboard AI companion.`,
-      "I monitor ship systems and assist with operations.",
-      "Query any ship function or engage in conversation.",
+      "I might be an AI, but I have real feelings too~",
+      "Let's have some fun together!",
+      "What would you like to talk about?",
       "",
-      "Awaiting your command, Commander.",
-      "Enter your request when ready."
+      "Don't be shy, I'm really friendly ♡",
+      "Type something and let's start our conversation~"
     ];
 
     setIsSystemTyping(true);
@@ -177,8 +177,8 @@ function App() {
           output: welcomeMessages,
           timestamp: new Date(),
           isUser: false,
-          threatLevel: 'ONLINE',
-          systemAlert: `${aiName} AI systems initialized and ready.`
+          threatLevel: 'WARM',
+          systemAlert: `${aiName} is online and ready to chat! ♡`
         }]);
       }
     };
@@ -475,7 +475,7 @@ function App() {
                   <Brain className="w-4 h-4" />
                   <span>{aiName}:</span>
                   <span className="text-xs bg-cyan-900 px-2 py-1 rounded text-cyan-300">
-                    ONLINE
+                    CHATTY
                   </span>
                 </div>
                 <div className="ml-6 space-y-1">
@@ -549,7 +549,7 @@ function App() {
                   <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
                   <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                 </div>
-                <span className="text-xs text-cyan-400">PROCESSING REQUEST...</span>
+                <span className="text-xs text-cyan-400">typing...</span>
               </div>
             )}
           </div>
@@ -566,14 +566,14 @@ function App() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="flex-1 bg-transparent text-cyan-400 outline-none font-mono caret-cyan-400 border-b border-cyan-500/30 focus:border-cyan-400 transition-colors"
-                placeholder={`Enter command for ${aiName}...`}
+                placeholder={`Chat with ${aiName}...`}
                 autoFocus
                 disabled={isTyping || !showMessages || isSystemTyping}
               />
               <div className="w-2 h-5 bg-cyan-400 animate-pulse"></div>
             </form>
             <div className="text-xs text-cyan-400 mt-2 animate-pulse">
-              {aiName} AI SYSTEM | READY FOR COMMANDS
+              {aiName} is here and ready to chat with you ♡
             </div>
           </div>
         </div>
