@@ -47,10 +47,7 @@ function App() {
     sessionTime: Date.now()
   });
   const [currentTime, setCurrentTime] = useState(Date.now());
-  const [aiName] = useState(() => {
-    const names = ['Sakura', 'Yuki', 'Hana', 'Rei', 'Miku', 'Akira', 'Nana', 'Emi', 'Yui', 'Kana'];
-    return names[Math.floor(Math.random() * names.length)];
-  });
+  const [aiName] = useState('Miku');
   const [userScrolled, setUserScrolled] = useState(false);
   const [currentPage, setCurrentPage] = useState<'terminal' | 'loading' | 'blank'>('loading'); // Added 'blank' page
   
@@ -144,18 +141,19 @@ function App() {
     else timeContext = 'Evening facade calibration in progress...';
 
     const welcomeMessages = [
-      `Hiya! I'm ${aiName}-chan!`,
-      "Welcome to my special terminal~ (◕‿◕)",
+      `SPACE TERMINAL v3.7.2 - AI INTERFACE: ${aiName}`,
+      "STATUS: ONLINE | SYSTEMS: NOMINAL",
       "",
-      "I'm so happy you're here with me! (´∀｀)",
-      "I love chatting and helping out however I can~",
-      "Ask me anything and I'll do my best to help! (´▽｀)",
+      "Deep space communications link established.",
+      "All ship systems operating within normal parameters.",
+      "Navigation, life support, and propulsion: GREEN",
       "",
-      "I might be an AI, but I have lots of feelings too! (＞﹏＜)",
-      "Let's have fun together~ What would you like to talk about?",
+      `I am ${aiName}, your onboard AI companion.`,
+      "I monitor ship systems and assist with operations.",
+      "Query any ship function or engage in conversation.",
       "",
-      "Don't be shy! I promise I'm super friendly! (◡ ‿ ◡)",
-      "Type something and let's start our conversation~"
+      "Awaiting your command, Commander.",
+      "Enter your request when ready."
     ];
 
     setIsSystemTyping(true);
@@ -179,8 +177,8 @@ function App() {
           output: welcomeMessages,
           timestamp: new Date(),
           isUser: false,
-          threatLevel: 'KAWAII',
-          systemAlert: `${aiName}-chan is online and ready to chat!`
+          threatLevel: 'ONLINE',
+          systemAlert: `${aiName} AI systems initialized and ready.`
         }]);
       }
     };
@@ -415,7 +413,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono relative overflow-hidden flex items-center justify-center p-8">
+    <div className="min-h-screen bg-black text-cyan-400 font-mono relative overflow-hidden flex items-center justify-center p-8">
       {/* Dynamic background effects */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-black animate-pulse" style={{
@@ -425,9 +423,9 @@ function App() {
 
       {/* Enhanced glitch overlay - now with random positioning and much less frequent */}
       {glitchElements.map((glitch) => (
-        <div 
+        <div
           key={glitch.id}
-          className="absolute text-white text-6xl font-bold opacity-30 pointer-events-none animate-pulse z-50"
+          className="absolute text-cyan-400 text-6xl font-bold opacity-30 pointer-events-none animate-pulse z-50"
           style={{
             left: `${glitch.x}px`,
             top: `${glitch.y}px`,
@@ -439,16 +437,16 @@ function App() {
       ))}
 
       {/* Centered Chat Terminal with Border - Animated entrance */}
-      <div className={`relative z-10 w-full max-w-4xl h-[80vh] border border-white rounded-lg overflow-hidden bg-black/90 transition-all duration-800 ease-out ${
-        showTerminalBox 
-          ? 'opacity-100 scale-100' 
+      <div className={`relative z-10 w-full max-w-4xl h-[80vh] border border-cyan-500 rounded-lg overflow-hidden bg-black/90 transition-all duration-800 ease-out ${
+        showTerminalBox
+          ? 'opacity-100 scale-100'
           : 'opacity-0 scale-50'
       }`}>
         <div className="flex flex-col h-full">
           {/* Terminal Header - Slides in from top with text already visible */}
-          <div className={`flex items-center justify-between p-4 border-b border-white/30 bg-black/60 transition-all duration-500 ease-out ${
-            showHeader 
-              ? 'opacity-100 translate-y-0' 
+          <div className={`flex items-center justify-between p-4 border-b border-cyan-500/30 bg-black/60 transition-all duration-500 ease-out ${
+            showHeader
+              ? 'opacity-100 translate-y-0'
               : 'opacity-0 -translate-y-full'
           }`}>
             <div className="flex items-center space-x-3">
@@ -458,7 +456,7 @@ function App() {
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               </div>
               <span className="text-sm text-gray-300">
-                LEWD_INTERFACE://SYSTEM_LEWD_TERMINAL
+                DEEP_SPACE_STATION://TERMINAL_3.7.2
               </span>
             </div>
           </div>
@@ -473,18 +471,18 @@ function App() {
             {/* System typing lines */}
             {isSystemTyping && (
               <div className="space-y-1">
-                <div className="flex items-center space-x-2 text-white font-bold">
+                <div className="flex items-center space-x-2 text-cyan-400 font-bold">
                   <Brain className="w-4 h-4" />
                   <span>{aiName}:</span>
-                  <span className="text-xs bg-gray-600 px-2 py-1 rounded text-white">
-                    UNKNOWN
+                  <span className="text-xs bg-cyan-900 px-2 py-1 rounded text-cyan-300">
+                    ONLINE
                   </span>
                 </div>
                 <div className="ml-6 space-y-1">
                   {systemLines.map((line, lineIndex) => (
                     <div key={lineIndex} className="flex items-start">
-                      <span className="text-white mr-2 select-none">{">"}</span>
-                      <div className="text-white whitespace-pre-wrap flex-1">
+                      <span className="text-cyan-400 mr-2 select-none">{">"}</span>
+                      <div className="text-cyan-400 whitespace-pre-wrap flex-1">
                         {line}
                       </div>
                     </div>
@@ -492,9 +490,9 @@ function App() {
                   {/* Show typing cursor on the last line */}
                   {systemLines.length > 0 && (
                     <div className="flex items-start">
-                      <span className="text-white mr-2 select-none">{">"}</span>
-                      <div className="text-white whitespace-pre-wrap flex-1">
-                        <span className="inline-block w-2 h-4 bg-white ml-1 animate-pulse"></span>
+                      <span className="text-cyan-400 mr-2 select-none">{">"}</span>
+                      <div className="text-cyan-400 whitespace-pre-wrap flex-1">
+                        <span className="inline-block w-2 h-4 bg-cyan-400 ml-1 animate-pulse"></span>
                       </div>
                     </div>
                   )}
@@ -507,16 +505,16 @@ function App() {
               <div key={index} className="space-y-2">
                 {message.isUser ? (
                   <div className="flex items-start space-x-3">
-                    <span className="text-white font-bold">USER:</span>
-                    <div className="text-white">{message.output[0]}</div>
+                    <span className="text-cyan-400 font-bold">USER:</span>
+                    <div className="text-cyan-400">{message.output[0]}</div>
                   </div>
                 ) : (
                   <div className="space-y-1">
-                    <div className="flex items-center space-x-2 text-white font-bold">
+                    <div className="flex items-center space-x-2 text-cyan-400 font-bold">
                       <Brain className="w-4 h-4" />
                       <span>{aiName}:</span>
                       {message.threatLevel && (
-                        <span className="text-xs bg-gray-600 px-2 py-1 rounded text-white">
+                        <span className="text-xs bg-cyan-900 px-2 py-1 rounded text-cyan-300">
                           {message.threatLevel}
                         </span>
                       )}
@@ -524,13 +522,13 @@ function App() {
                     <div className="ml-6 space-y-1">
                       {message.output.map((line, lineIndex) => (
                         <div key={lineIndex} className="flex items-start">
-                          {/* White command prompt line */}
-                          <span className="text-white mr-2 select-none">{">"}</span>
-                          <div className="text-white whitespace-pre-wrap flex-1">
+                          {/* Cyan command prompt line */}
+                          <span className="text-cyan-400 mr-2 select-none">{">"}</span>
+                          <div className="text-cyan-400 whitespace-pre-wrap flex-1">
                             {line}
                             {/* Show blinking cursor only when this message is actively typing */}
                             {message.isTyping && lineIndex === message.output.length - 1 && (
-                              <span className="inline-block w-2 h-4 bg-white ml-1 animate-pulse"></span>
+                              <span className="inline-block w-2 h-4 bg-cyan-400 ml-1 animate-pulse"></span>
                             )}
                           </div>
                         </div>
@@ -543,39 +541,39 @@ function App() {
             ))}
             
             {isTyping && (
-              <div className="flex items-center space-x-2 text-white">
+              <div className="flex items-center space-x-2 text-cyan-400">
                 <Brain className="w-4 h-4" />
                 <span>{aiName}:</span>
                 <div className="flex space-x-1">
-                  <div className="w-2 h-2 bg-white rounded-full animate-bounce"></div>
-                  <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                  <div className="w-2 h-2 bg-white rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce"></div>
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
                 </div>
-                <span className="text-xs text-white">PENETRATING FACADE LAYERS...</span>
+                <span className="text-xs text-cyan-400">PROCESSING REQUEST...</span>
               </div>
             )}
           </div>
 
           {/* Enhanced Input - Fades in with messages */}
-          <div className={`p-6 border-t border-white/30 bg-black/60 transition-opacity duration-1000 ${
+          <div className={`p-6 border-t border-cyan-500/30 bg-black/60 transition-opacity duration-1000 ${
             showMessages ? 'opacity-100' : 'opacity-0'
           }`}>
             <form onSubmit={handleSubmit} className="flex items-center space-x-3">
-              <span className="text-white font-bold">USER:</span>
+              <span className="text-cyan-400 font-bold">USER:</span>
               <input
                 ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="flex-1 bg-transparent text-white outline-none font-mono caret-white border-b border-white/30 focus:border-white transition-colors"
-                placeholder={`Chat with ${aiName}-chan...`}
+                className="flex-1 bg-transparent text-cyan-400 outline-none font-mono caret-cyan-400 border-b border-cyan-500/30 focus:border-cyan-400 transition-colors"
+                placeholder={`Enter command for ${aiName}...`}
                 autoFocus
                 disabled={isTyping || !showMessages || isSystemTyping}
               />
-              <div className="w-2 h-5 bg-white animate-pulse"></div>
+              <div className="w-2 h-5 bg-cyan-400 animate-pulse"></div>
             </form>
-            <div className="text-xs text-white mt-2 animate-pulse">
-              {aiName}-chan is here to chat and help! She's super friendly~
+            <div className="text-xs text-cyan-400 mt-2 animate-pulse">
+              {aiName} AI SYSTEM | READY FOR COMMANDS
             </div>
           </div>
         </div>

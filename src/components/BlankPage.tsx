@@ -10,7 +10,7 @@ const BlankPage: React.FC<BlankPageProps> = ({ onComplete }) => {
   const [isTyping, setIsTyping] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const targetText = "generating companion";
+  const targetText = "initializing miku ai systems";
 
   useEffect(() => {
     // Start typing after a brief delay
@@ -63,12 +63,12 @@ const BlankPage: React.FC<BlankPageProps> = ({ onComplete }) => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono relative overflow-hidden flex items-center justify-center">
+    <div className="min-h-screen bg-black text-cyan-400 font-mono relative overflow-hidden flex items-center justify-center">
       <div className="text-center">
         <span className="text-2xl">
           {displayText}
           {(isTyping || isDeleting || showCursor) && (
-            <span className="inline-block w-3 h-6 bg-white ml-1 animate-pulse"></span>
+            <span className="inline-block w-3 h-6 bg-cyan-400 ml-1 animate-pulse"></span>
           )}
         </span>
       </div>

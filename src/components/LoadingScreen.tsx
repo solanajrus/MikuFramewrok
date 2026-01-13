@@ -10,7 +10,10 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const [isComplete, setIsComplete] = useState(false);
 
   const bootMessages = [
-    'Welcome to your AI companion terminal ♡'
+    'DEEP SPACE STATION - TERMINAL v3.7.2',
+    'Initializing AI systems...',
+    'Loading Miku AI core modules...',
+    'Systems ready.'
   ];
 
   useEffect(() => {
@@ -53,17 +56,17 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   }, [currentMessageIndex, bootMessages, isComplete, onComplete]);
 
   return (
-    <div className="min-h-screen bg-black text-white font-mono flex flex-col relative overflow-hidden">
+    <div className="min-h-screen bg-black text-cyan-400 font-mono flex flex-col relative overflow-hidden">
       {/* Terminal header */}
-      <div className="border-b border-white/30 p-4 bg-black">
+      <div className="border-b border-cyan-500/30 p-4 bg-black">
         <div className="flex items-center space-x-3">
           <div className="flex space-x-2">
-            <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
-            <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
-            <div className="w-3 h-3 bg-white rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
           </div>
-          <span className="text-white text-sm">AI_COMPANION://initializing.sh</span>
-          <span className="text-white text-xs ml-auto">STATUS: LOADING</span>
+          <span className="text-cyan-400 text-sm">DEEP_SPACE://boot_sequence.sys</span>
+          <span className="text-cyan-400 text-xs ml-auto">STATUS: INITIALIZING</span>
         </div>
       </div>
 
@@ -76,31 +79,31 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 <div className="h-4"></div>
               ) : (
                 <>
-                  <span className="text-white text-xs mr-3 select-none w-4 text-right">
+                  <span className="text-cyan-400 text-xs mr-3 select-none w-4 text-right">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div className="flex-1">
-                    <span className="text-white">{message}</span>
+                    <span className="text-cyan-400">{message}</span>
                     {index === messages.length - 1 && !isComplete && (
-                      <span className="inline-block w-2 h-5 bg-white ml-1 animate-pulse"></span>
+                      <span className="inline-block w-2 h-5 bg-cyan-400 ml-1 animate-pulse"></span>
                     )}
                   </div>
                 </>
               )}
             </div>
           ))}
-          
+
           {isComplete && (
-            <div className="mt-6 space-y-2 border-t border-white/30 pt-4">
-              <div className="text-white text-lg font-bold animate-pulse">
-                ✓ COMPANION READY
+            <div className="mt-6 space-y-2 border-t border-cyan-500/30 pt-4">
+              <div className="text-cyan-400 text-lg font-bold animate-pulse">
+                ✓ MIKU AI ONLINE
               </div>
               <div className="flex items-center">
-                <span className="text-white">companion@ready:~# </span>
-                <span className="inline-block w-2 h-5 bg-white ml-1 animate-pulse"></span>
+                <span className="text-cyan-400">station@miku:~$ </span>
+                <span className="inline-block w-2 h-5 bg-cyan-400 ml-1 animate-pulse"></span>
               </div>
-              <div className="text-white text-sm animate-pulse">
-                Starting companion chat interface...
+              <div className="text-cyan-400 text-sm animate-pulse">
+                Establishing terminal connection...
               </div>
             </div>
           )}
@@ -108,14 +111,14 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       </div>
 
       {/* Bottom status bar */}
-      <div className="border-t border-white/30 p-2 bg-black text-xs">
+      <div className="border-t border-cyan-500/30 p-2 bg-black text-xs">
         <div className="flex justify-between items-center">
-          <span className="text-white">COMPANION INITIALIZATION</span>
-          <span className="text-white">
-            {messages.length}/{bootMessages.length} | 
+          <span className="text-cyan-400">SYSTEM INITIALIZATION</span>
+          <span className="text-cyan-400">
+            {messages.length}/{bootMessages.length} |
             {isComplete ? 'COMPLETE' : 'RUNNING'}
           </span>
-          <span className="text-white animate-pulse">● INIT</span>
+          <span className="text-cyan-400 animate-pulse">● BOOT</span>
         </div>
       </div>
     </div>

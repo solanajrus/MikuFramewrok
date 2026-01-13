@@ -8,7 +8,7 @@
   }
 }
 
-/* Matrix-style scrollbar */
+/* Space terminal scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -19,13 +19,13 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4a4a4a; /* Changed from #ffffff to dark grey */
+  background: #22d3ee; /* Cyan color */
   border-radius: 4px;
   opacity: 0.7;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #666666; /* Changed from #ff0000 to lighter grey on hover */
+  background: #06b6d4; /* Darker cyan on hover */
 }
 
 /* Glitch animation */
@@ -78,18 +78,18 @@
   animation: red-pulse 2s infinite;
 }
 
-/* White terminal glow */
-@keyframes white-glow {
-  0%, 100% { 
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+/* Cyan terminal glow */
+@keyframes cyan-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(34, 211, 238, 0.5);
   }
-  50% { 
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  50% {
+    text-shadow: 0 0 10px rgba(34, 211, 238, 0.8);
   }
 }
 
-.white-glow {
-  animation: white-glow 2s infinite;
+.cyan-glow {
+  animation: cyan-glow 2s infinite;
 }
 
 /* Scan lines effect */
@@ -102,7 +102,7 @@
   bottom: 0;
   background: linear-gradient(
     transparent 50%,
-    rgba(255, 255, 255, 0.03) 50%
+    rgba(34, 211, 238, 0.03) 50%
   );
   background-size: 100% 4px;
   pointer-events: none;
@@ -117,7 +117,7 @@
 /* Custom focus styles */
 input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.3);
 }
 
 /* Responsive design */
